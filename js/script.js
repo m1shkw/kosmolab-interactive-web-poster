@@ -7,9 +7,9 @@ const logoContainer = document.getElementById('kosmolab-logo');
 
 // 0.1 массив свгшек (гайд-кружочки)
 const logoFiles = [
-    'images/vector/0.1-kosmolab.svg',
-    'images/vector/0.2-kosmolab.svg',
-    'images/vector/0.3-kosmolab.svg'
+    'images/0.1-kosmolab.svg',
+    'images/0.2-kosmolab.svg',
+    'images/0.3-kosmolab.svg'
 ];
 
 let currentIndex = 0;
@@ -44,9 +44,9 @@ logoContainer.addEventListener('mouseleave', stopAnimation);
 // 1. круглая обводка планет
 const circleContainer = document.getElementById('circle-guide');
 const circleFiles = [
-    'images/vector/1.1-circle-guide.svg',
-    'images/vector/1.2-circle-guide.svg',
-    'images/vector/1.3-circle-guide.svg'
+    'images/1.1-circle-guide.svg',
+    'images/1.2-circle-guide.svg',
+    'images/1.3-circle-guide.svg'
 ];
 let circleIndex = 0;
 
@@ -64,13 +64,25 @@ setInterval(animateCircles, 250);
 
 
 
-// 4. кнопки
+// 4. кнопки и планеты
 const planetButtons = document.querySelectorAll('.planet-btn');
+const planetImages = document.querySelectorAll('.planet-img');
 
 planetButtons.forEach(button => {
     button.addEventListener('click', () => {
+        // 4.1 кнопки
         planetButtons.forEach(btn => btn.classList.remove('active'));
         button.classList.add('active');
-        console.log("Выбрана планета:", button.dataset.planet);
+
+        // 4.2 планеты
+        const targetPlanetId = 'planet-' + button.dataset.planet; 
+        
+        planetImages.forEach(img => {
+            if (img.id === targetPlanetId) {
+                img.classList.add('active');
+            } else {
+                img.classList.remove('active');
+            }
+        });
     });
 });

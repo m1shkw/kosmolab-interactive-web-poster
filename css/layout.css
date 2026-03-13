@@ -61,6 +61,28 @@ body {
 }
 
 
+/* 1.2 планеты */
+.planet-layer {
+    position: absolute;
+    width: 50vw;
+    z-index: 2;
+    margin-left: 5vw;
+    top: 25%;
+    transform: translateY(-25%);
+    pointer-events: none;
+}
+.planet-img {
+    position: absolute;
+    width: 100%;
+    height: auto;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+}
+.planet-img.active { opacity: 1; }
+
+
 
 /* 2. cообщения */
 .sidebar-left {

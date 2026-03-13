@@ -15,18 +15,24 @@
 
         <div class="subsection-1-1">
 
-            <!-- тайтл космолаб -->
+            <!-- 0 тайтл космолаб -->
             <div id="kosmolab-logo" class="logo-container"></div>
 
-            <!-- обводка кружочки -->
+            <!-- 1 обводка кружочки -->
             <div class="workspace-wrapper">
                 <div id="circle-guide" class="circle-layer"></div>
                 
+                <div class="planet-layer">
+                    <img src="images/2.1-planet-orbital.png" id="planet-orbital" class="planet-img active">
+                    <img src="images/2.2-planet-relief.png" id="planet-relief" class="planet-img">
+                    <img src="images/2.3-planet-selenic.png" id="planet-selenic" class="planet-img">
+                </div>
             </div>
 
-            <!-- 2 соо слева -->
+            <!-- левый сайдбар -->
             <div class="sidebar-left">
-                
+
+                <!-- 2 соо -->
                 <div class="message-box variant-black">
                     <div class="message-content">
                         <p class="message-text">СЛЕДУЙТЕ ИНСТРУКЦИЯМ В&nbsp;БОКСАХ ДЛЯ&nbsp;СБОРКИ ЖЕЛАЕМОЙ ПЛАНЕТЫ</p>
@@ -49,8 +55,10 @@
                     </div>
                 </div>
 
+                <!-- 3 перегородка -->
                 <div class="sidebar-divider"></div>
 
+                <!-- 4 кнопочки -->
                 <div class="planet-switcher">
                     <button class="planet-btn active" data-planet="orbital">ОРБИТАЛЬНАЯ</button>
                     <button class="planet-btn" data-planet="relief">РЕЛЬЕФНАЯ</button>
