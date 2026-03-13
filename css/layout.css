@@ -2,25 +2,188 @@
     box-sizing: border-box;
     margin: 0;
     padding: 0;
+}
+
+body {
     background-color: #368AFF;
+    overflow-x: hidden;
 }
 
 
 
-/* I. контейнер 1-й секции */
+/* I. СЕКЦИЯ : СТРУКТУРА */
 .section-1 {
     width: 100%;
     display: flex;
     flex-direction: column;
 }
 
+
+
+/* I.I подсекция : выбор планеты */
 .subsection-1-1 {
     width: 100%;
     line-height: 0;
 }
 
+
+
+/* 0. лого */
 .logo-container img {
     width: 100%;
     height: auto;
     display: block;
+}
+
+
+
+/* 1. рабочая область под космолаб */
+.workspace-wrapper {
+    position: relative;
+    width: 100vw;
+    height: 60vw;
+    margin-top: 4vw;
+    display: flex;
+    justify-content: center;
+}
+
+/* 1.1 крулая обводка планет */
+.circle-layer {
+    position: absolute;
+    width: 50vw;
+    z-index: 1;
+    margin-left: 5vw;
+}
+.circle-layer img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+
+
+/* 2. cообщения */
+.sidebar-left {
+    position: absolute;
+    left: 2vw;
+    top: 20vw;
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5vw; 
+}
+
+/* 2.1 стили боксов соо */
+.message-box {
+    background-color: #4891FF;
+    border-radius: 1.5vw; 
+    width: 21vw; 
+    padding: 1.5vw;
+}
+.message-content {
+    display: flex;
+    flex-direction: column;
+    gap: 1vw;
+}
+
+/* 2.2 основной текст соо */
+.message-text {
+    font-family: 'Roboto Mono', monospace;
+    font-size: 1vw;
+    line-height: 1.3;
+    text-transform: uppercase;
+
+    /* стиль шрифта для mac/ios */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* 2.3 перегородка */
+.divider {
+    width: 50%;
+    height: 0.09vw;
+}
+
+/* 2.4 футер текст соо */
+.message-footer {
+    display: flex;
+    justify-content: space-between;
+    font-family: 'Roboto Mono', monospace;
+    font-size: 1vw;
+    line-height: 1.3;
+
+    /* стиль шрифта для mac/ios */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* 2.5 цвет элементов */
+.variant-black { color: #000000; }
+.variant-black .divider { background-color: #000000; }
+
+.variant-white { color: #FFFFFF; }
+.variant-white .divider { background-color: #FFFFFF; }
+
+
+
+
+/* 3. перегородка между соо и кнопками */
+.sidebar-divider {
+    width: 21vw;
+    height: 0.09vw;
+    background-color: #FFFFFF;
+    margin: 3vw 0;
+}
+
+
+
+/* 4. кнопочки */
+.planet-switcher {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.planet-btn {
+    width: 21vw;
+    padding: 2vw 0;
+    border: none;
+    border-radius: 1.5vw;
+
+    font-family: 'Roboto Mono', monospace;
+    font-weight: 400; 
+    font-size: 1.6vw;
+    text-transform: uppercase;
+    
+    cursor: pointer;
+    transition: all 0.2s ease;
+    color: #76ADFF; 
+
+    /* стиль шрифта для mac/ios */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* 4.0 состояние : активная (вжатая) */
+.planet-btn.active {
+    background-color: #8FC2FF;
+    color: #FFFFFF;
+    box-shadow: 
+        inset  0.15vw  0.15vw 0.3vw #6092CE, 
+        inset -0.15vw -0.15vw 0.3vw #A9D4F9;
+}
+
+/* 4.0 состояние : неактивная (выпуклая) */
+.planet-btn {
+    background-color: #4891FF;
+    box-shadow: 
+        -0.2vw -0.2vw 0.3vw #4BAAFF, 
+         0.15vw  0.15vw 0.4vw #116BE7;
+}
+
+/* 4.0 ховер для текста неактивной кнопочки */
+.planet-btn:not(.active):hover {
+    color: #FFFFFFCC; 
 }

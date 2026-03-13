@@ -1,7 +1,11 @@
-// I. секция 1.1
+// I.I подсекция : выбор планеты
+
+
+
+// 0. лого
 const logoContainer = document.getElementById('kosmolab-logo');
 
-// массив свгшек
+// 0.1 массив свгшек (гайд-кружочки)
 const logoFiles = [
     'images/vector/0.1-kosmolab.svg',
     'images/vector/0.2-kosmolab.svg',
@@ -15,17 +19,58 @@ const logoImg = document.createElement('img');
 logoImg.src = logoFiles[0];
 logoContainer.appendChild(logoImg);
 
-// анимация смены свг
+// 0.2 цикл смены свг
 function animateLogo() {
     currentIndex = (currentIndex + 1) % logoFiles.length;
     logoImg.src = logoFiles[currentIndex];
 }
 
-function startAnimation() { logoTimer = setInterval(animateLogo, 160); }
-function stopAnimation() { clearInterval(logoTimer); }
+// 0.3 запуск остановка анимашки
+function startAnimation() { 
+    clearInterval(logoTimer); 
+    logoTimer = setInterval(animateLogo, 160); 
+}
+function stopAnimation() { 
+    clearInterval(logoTimer); 
+    currentIndex = 0;
+    logoImg.src = logoFiles[0];
+}
 
-// интерактивность при хавере 
-logoContainer.addEventListener('mouseenter', stopAnimation);
-logoContainer.addEventListener('mouseleave', startAnimation);
+logoContainer.addEventListener('mouseenter', startAnimation);
+logoContainer.addEventListener('mouseleave', stopAnimation); 
 
-startAnimation();
+
+
+// 1. круглая обводка планет
+const circleContainer = document.getElementById('circle-guide');
+const circleFiles = [
+    'images/vector/1.1-circle-guide.svg',
+    'images/vector/1.2-circle-guide.svg',
+    'images/vector/1.3-circle-guide.svg'
+];
+let circleIndex = 0;
+
+const circleImg = document.createElement('img');
+circleImg.src = circleFiles[0];
+circleContainer.appendChild(circleImg);
+
+function animateCircles() {
+    circleIndex = (circleIndex + 1) % circleFiles.length;
+    circleImg.src = circleFiles[circleIndex];
+}
+
+setInterval(animateCircles, 250);
+
+
+
+
+// 4. кнопки
+const planetButtons = document.querySelectorAll('.planet-btn');
+
+planetButtons.forEach(button => {
+    button.addEventListener('click', () => {
+        planetButtons.forEach(btn => btn.classList.remove('active'));
+        button.classList.add('active');
+        console.log("Выбрана планета:", button.dataset.planet);
+    });
+});
