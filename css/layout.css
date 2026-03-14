@@ -11,6 +11,7 @@ body {
 
 
 
+
 /* I. СЕКЦИЯ : СТРУКТУРА */
 .section-1 {
     width: 100%;
@@ -21,10 +22,7 @@ body {
 
 
 /* I.I подсекция : выбор планеты */
-.subsection-1-1 {
-    width: 100%;
-    line-height: 0;
-}
+.subsection-1-1 { width: 100%; }
 
 
 
@@ -37,7 +35,7 @@ body {
 
 
 
-/* 1. рабочая область под космолаб */
+/* 1. область под лого космолаб */
 .workspace-wrapper {
     position: relative;
     width: 100vw;

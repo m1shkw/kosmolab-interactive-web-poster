@@ -1,0 +1,119 @@
+/* уро мобилко (<600) */
+
+/* скрытие мобильного лого */
+.logo-container .logo-mobile-img {
+    display: none;
+}
+
+/* I.I подсекция : выбор планеты */
+@media (max-width: 600px) {
+
+    .subsection-1-1 {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    /* 0. лого */
+    .logo-container .logo-mobile-img {
+        display: block;
+        width: 100%;
+    }
+    .logo-container {
+        display: flex;
+        justify-content: center;
+    }
+    .logo-container img:not(.logo-mobile-img) { display: none !important; }
+
+
+
+    /* сайдбары */
+    .sidebar-right { display: none; }
+    .sidebar-left { display: contents; } 
+    .sidebar-divider { display: none; }
+
+
+
+    /* 1. cообщения */
+    .message-box {
+        order: 2;
+        width: 90%;
+        margin-top: 5vw; 
+        padding: 5vw;
+        border-radius: 4vw;
+    }
+    .message-content {
+        display: flex;
+        flex-direction: column;
+        gap: 3vw;
+    }
+    .message-text { font-size: clamp(14px, 4vw, 17px); line-height: 1.35; }
+    .divider { width: 50%; height: 1px; }
+    .message-footer { font-size: clamp(14px, 4vw, 17px); }
+
+
+
+    /* 2. планеты & обводка */
+    .workspace-wrapper {
+        order: 3; 
+        position: relative;
+        width: 100vw;
+        height: 100vw; 
+        margin-top: 5vw;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        overflow: visible;
+    }
+
+    /* 2.1 круглая обводка */
+    .circle-layer {
+        position: absolute;
+        width: 85vw; 
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        margin-left: 0; 
+    }
+    .circle-layer img { width: 100%; height: auto; }
+
+    /* 2.2 планеты */
+    .planet-layer {
+        position: absolute;
+        width: 85vw;
+        top: 35%;
+        left: 50%;
+        transform: translate(-50%, -35%);
+        margin-left: 0;
+        z-index: 2;
+    }
+    .planet-img { width: 100%; height: auto; }
+
+    
+
+    /* 3. кнопочки */
+    .planet-switcher {
+        order: 4;
+        width: 90%; 
+        margin-top: 5vw;
+        margin-bottom: 10vw;
+        display: flex;
+        flex-direction: column;
+        gap: 5vw;
+        align-items: stretch;
+    }
+    .planet-btn {
+        width: 100%;
+        padding: 4.5vw 4vw;
+        border-radius: 5vw;
+        font-size: clamp(15px, 4.5vw, 20px);
+        box-shadow:
+            -2px -2px 4px #4BAAFF,
+            2px 2px 5px #116BE7;
+    }
+    .planet-btn.active {
+        box-shadow:
+            inset 2px 2px 4px #6092CE,
+            inset -2px -2px 4px #A9D4F9;
+    }
+}
