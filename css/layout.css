@@ -281,7 +281,7 @@ body {
 
 
 
-/* 7. график */
+/* 7. граф */
 .graph-container {
     width: 13vw;
     height: 30vw; 
@@ -293,7 +293,6 @@ body {
     align-items: center;
     position: relative;
 }
-
 .graph-video {
     width: 32vw; 
     object-fit: cover;
