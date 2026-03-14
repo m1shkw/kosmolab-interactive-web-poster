@@ -52,7 +52,7 @@ body {
     position: absolute;
     width: 55vw;
     z-index: 1;
-    margin-left: 8vw;
+    margin-left: 7vw;
 }
 .circle-layer img {
     width: 100%;
@@ -66,7 +66,7 @@ body {
     position: absolute;
     width: 55vw;
     z-index: 2;
-    margin-left: 8vw;
+    margin-left: 7vw;
     top: 25%;
     transform: translateY(-25%);
     pointer-events: none;
@@ -212,12 +212,15 @@ body {
 
 
 
-/* — левый сайдбар */
+/* — правый сайдбар */
 .sidebar-right {
     position: absolute;
     right: 2vw;
     top: 20vw;
     z-index: 10;
+    display: flex;
+    flex-direction: column;
+    gap: 2vw;
 }
 
 /* 6. навигация */
@@ -278,12 +281,7 @@ body {
 
 
 
-.sidebar-right {
-    display: flex;
-    flex-direction: column;
-    gap: 2vw; /* Расстояние между навигацией и графом */
-}
-
+/* 7. график */
 .graph-container {
     width: 13vw;
     height: 30vw; 
@@ -293,21 +291,13 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    position: relative; /* Для фиксации видео */
+    position: relative;
 }
 
 .graph-video {
-    /* Чтобы после поворота видео закрыло всю высоту 27vw, 
-       задаем его ширину равной высоте контейнера */
     width: 32vw; 
-    
-    
-    object-fit: cover; /* Чтобы видео заполнило область без черных полос */
+    object-fit: cover;
     border-radius: 3vw;
-    
-    /* Поворачиваем */
     transform: rotate(90deg);
-    
-    /* Убираем возможные смещения, центрируем через абсолют, если флекс не справляется */
     position: absolute;
 }
