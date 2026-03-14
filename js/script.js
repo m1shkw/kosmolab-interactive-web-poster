@@ -64,9 +64,10 @@ setInterval(animateCircles, 250);
 
 
 
-// 4. кнопки и планеты
+// 4. кнопки и планеты 
 const planetButtons = document.querySelectorAll('.planet-btn');
 const planetImages = document.querySelectorAll('.planet-img');
+const navPreviewImages = document.querySelectorAll('.nav-preview-img'); 
 
 planetButtons.forEach(button => {
     button.addEventListener('click', () => {
@@ -74,14 +75,21 @@ planetButtons.forEach(button => {
         planetButtons.forEach(btn => btn.classList.remove('active'));
         button.classList.add('active');
 
-        // 4.2 планеты
-        const targetPlanetId = 'planet-' + button.dataset.planet; 
-        
+        const planetType = button.dataset.planet;
+
+        // 4.2 переключение больших планет
+        const targetBigId = 'planet-' + planetType; 
         planetImages.forEach(img => {
-            if (img.id === targetPlanetId) {
-                img.classList.add('active');
+            img.classList.toggle('active', img.id === targetBigId);
+        });
+
+        // 4.3 переключение маленьких планеток
+        const targetNavId = 'nav-img-' + planetType;
+        navPreviewImages.forEach(navImg => {
+            if (navImg.id === targetNavId) {
+                navImg.classList.add('active');
             } else {
-                img.classList.remove('active');
+                navImg.classList.remove('active');
             }
         });
     });

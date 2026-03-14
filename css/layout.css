@@ -50,9 +50,9 @@ body {
 /* 1.1 крулая обводка планет */
 .circle-layer {
     position: absolute;
-    width: 50vw;
+    width: 55vw;
     z-index: 1;
-    margin-left: 5vw;
+    margin-left: 8vw;
 }
 .circle-layer img {
     width: 100%;
@@ -64,9 +64,9 @@ body {
 /* 1.2 планеты */
 .planet-layer {
     position: absolute;
-    width: 50vw;
+    width: 55vw;
     z-index: 2;
-    margin-left: 5vw;
+    margin-left: 8vw;
     top: 25%;
     transform: translateY(-25%);
     pointer-events: none;
@@ -84,7 +84,7 @@ body {
 
 
 
-/* 2. cообщения */
+/* — правый сайдбар */
 .sidebar-left {
     position: absolute;
     left: 2vw;
@@ -95,7 +95,7 @@ body {
     gap: 1.5vw; 
 }
 
-/* 2.1 стили боксов соо */
+/* 2. сообщения */
 .message-box {
     background-color: #4891FF;
     border-radius: 1.5vw; 
@@ -108,7 +108,7 @@ body {
     gap: 1vw;
 }
 
-/* 2.2 основной текст соо */
+/* 2.1 основной текст соо */
 .message-text {
     font-family: 'Roboto Mono', monospace;
     font-size: 1vw;
@@ -120,13 +120,13 @@ body {
     -moz-osx-font-smoothing: grayscale;
 }
 
-/* 2.3 перегородка */
+/* 2.2 перегородка */
 .divider {
     width: 50%;
     height: 0.09vw;
 }
 
-/* 2.4 футер текст соо */
+/* 2.3 футер текст соо */
 .message-footer {
     display: flex;
     justify-content: space-between;
@@ -139,7 +139,7 @@ body {
     -moz-osx-font-smoothing: grayscale;
 }
 
-/* 2.5 цвет элементов */
+/* 2.4 цвет элементов */
 .variant-black { color: #000000; }
 .variant-black .divider { background-color: #000000; }
 
@@ -154,7 +154,7 @@ body {
     width: 21vw;
     height: 0.09vw;
     background-color: #FFFFFF;
-    margin: 3vw 0;
+    margin: 4.5vw 0;
 }
 
 
@@ -208,4 +208,106 @@ body {
 /* 4.0 ховер для текста неактивной кнопочки */
 .planet-btn:not(.active):hover {
     color: #FFFFFFCC; 
+}
+
+
+
+/* — левый сайдбар */
+.sidebar-right {
+    position: absolute;
+    right: 2vw;
+    top: 20vw;
+    z-index: 10;
+}
+
+/* 6. навигация */
+.nav-box {
+    border: 0.09vw solid #87BBFF;
+    border-radius: 1.5vw;
+    width: 13vw;
+    padding: 1.5vw 1vw;
+    display: flex;
+    justify-content: center;
+}
+.nav-content {
+    display: flex;
+    flex-direction: column;
+    gap: 1vw; 
+    align-items: center;
+    text-align: center;
+    width: 100%;
+}
+.nav-item {
+    font-family: 'Roboto Mono', monospace;
+    font-size: 1vw;
+    line-height: 1.3;
+    text-transform: uppercase;
+    -webkit-font-smoothing: antialiased;
+}
+
+/* 6.0 цвета текстов */
+.title-black { color: #000000; }
+.active-white { color: #FFFFFF; }
+.inactive-blue { color: #87BBFF; }
+.selected-display { color: #FFFFFF; }
+
+/* 6.0 перегородки */
+.nav-divider {
+    width: 90%;
+    height: 0.09vw;
+    background-color: #87BBFF;
+}
+
+/* 6.1 превьюшка планеты */
+.nav-planet-preview {
+    position: relative;
+    width: 9vw;
+    height: 5vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.nav-preview-img {
+    position: absolute;
+    width: 100%;
+    height: auto;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+}
+.nav-preview-img.active { opacity: 1; }
+
+
+
+.sidebar-right {
+    display: flex;
+    flex-direction: column;
+    gap: 2vw; /* Расстояние между навигацией и графом */
+}
+
+.graph-container {
+    width: 13vw;
+    height: 30vw; 
+    overflow: hidden;
+    border-radius: 1.5vw;
+    background-color: #4891FF;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative; /* Для фиксации видео */
+}
+
+.graph-video {
+    /* Чтобы после поворота видео закрыло всю высоту 27vw, 
+       задаем его ширину равной высоте контейнера */
+    width: 32vw; 
+    
+    
+    object-fit: cover; /* Чтобы видео заполнило область без черных полос */
+    border-radius: 3vw;
+    
+    /* Поворачиваем */
+    transform: rotate(90deg);
+    
+    /* Убираем возможные смещения, центрируем через абсолют, если флекс не справляется */
+    position: absolute;
 }
