@@ -1,7 +1,6 @@
 // I.I подсекция : выбор планеты
 
 
-
 // 0. лого
 const logoContainer = document.getElementById('kosmolab-logo');
 
@@ -92,5 +91,76 @@ planetButtons.forEach(button => {
                 navImg.classList.remove('active');
             }
         });
+    });
+});
+
+
+
+
+// I.I подсекция : настройка деталей
+
+
+// 5. слайдер
+const sliders = document.querySelectorAll('.slider-track-container');
+
+sliders.forEach(slider => {
+    const thumb = slider.querySelector('.slider-thumb');
+    let isDragging = false;
+
+    // 1. позиции ползунка
+    const updateSliderPosition = (clientX) => {
+            const rect = slider.getBoundingClientRect();
+            const thumbWidth = thumb.offsetWidth; 
+            const halfThumb = thumbWidth / 2; 
+
+            let x = clientX - rect.left;
+
+            // ограничение движения ползунка
+            if (x < halfThumb) x = halfThumb;
+            if (x > rect.width - halfThumb) x = rect.width - halfThumb;
+
+            let percent = (x / rect.width) * 100;
+            thumb.style.left = percent + '%';
+        };
+
+
+    // 2.1 механия перемещения ползунков : десктоп
+    thumb.addEventListener('mousedown', (e) => {
+        isDragging = true;
+        e.preventDefault();
+    });
+
+    slider.addEventListener('mousedown', (e) => {
+        isDragging = true;
+        updateSliderPosition(e.clientX);
+    });
+
+    document.addEventListener('mousemove', (e) => {
+        if (!isDragging) return;
+        updateSliderPosition(e.clientX);
+    });
+
+    document.addEventListener('mouseup', () => {
+        isDragging = false;
+    });
+
+
+    // 2.2 механия перемещения ползунков : мобилка
+    thumb.addEventListener('touchstart', (e) => {
+        isDragging = true;
+    }, {passive: true});
+
+    slider.addEventListener('touchstart', (e) => {
+        isDragging = true;
+        updateSliderPosition(e.touches[0].clientX);
+    }, {passive: true});
+
+    document.addEventListener('touchmove', (e) => {
+        if (!isDragging) return;
+        updateSliderPosition(e.touches[0].clientX);
+    });
+
+    document.addEventListener('touchend', () => {
+        isDragging = false;
     });
 });
