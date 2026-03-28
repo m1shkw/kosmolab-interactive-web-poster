@@ -115,24 +115,16 @@
         <div class="subsection-1-2">
 
             <!-- 0. liquid слой -->
-            <svg class="slider-liquid-svg" aria-hidden="true" preserveAspectRatio="none">
+            <canvas class="slider-metaballs-canvas" aria-hidden="true"></canvas>
+
+            <svg style="display: none;">
                 <defs>
-                    <filter id="slider-goo">
-                        <feGaussianBlur in="SourceGraphic" stdDeviation="16" result="blur"></feGaussianBlur>
-                        <feColorMatrix
-                            in="blur"
-                            mode="matrix"
-                            values="
-                                1 0 0 0 0
-                                0 1 0 0 0
-                                0 0 1 0 0
-                                0 0 0 50 -8"
-                            result="goo">
-                        </feColorMatrix>
+                    <filter id="goo">
+                        <feGaussianBlur in="SourceGraphic" stdDeviation="12" result="blur" />
+                        <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 30 -15" result="goo" />
+                        <feBlend in="SourceGraphic" in2="goo" />
                     </filter>
                 </defs>
-
-                <g class="slider-liquid-group" filter="url(#slider-goo)"></g>
             </svg>
 
             <div class="sliders-wrapper">
@@ -217,7 +209,6 @@
                 <!-- 0.2 рамочка -->
                 <div class="param-frame-container">
                     <img src="images/5-color-frame.svg" class="frame-svg" alt="" aria-hidden="true">
-
 
                     <div class="frame-content">
 

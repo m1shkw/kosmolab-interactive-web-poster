@@ -97,119 +97,236 @@ planetButtons.forEach(button => {
 
 
 
+
 // I.II подсекция : настройка деталей
-
 const sliderSection = document.querySelector('.subsection-1-2');
-const liquidSvg = sliderSection?.querySelector('.slider-liquid-svg');
-const liquidGroup = sliderSection?.querySelector('.slider-liquid-group');
-const sliders = document.querySelectorAll('.slider-track-container');
-const sliderThumbs = [...document.querySelectorAll('.slider-thumb')];
+const liquidCanvas = sliderSection?.querySelector('.slider-metaballs-canvas');
+const sliders = sliderSection
+    ? [...sliderSection.querySelectorAll('.slider-track-container')]
+    : [];
+const sliderThumbs = sliders
+    .map(slider => slider.querySelector('.slider-thumb'))
+    .filter(Boolean);
 
-let liquidCircles = [];
-
-/* I.II / 3.3.3.0 liquid кружочки */
-if (sliderSection && liquidSvg && liquidGroup && sliderThumbs.length) {
-    const svgNS = 'http://www.w3.org/2000/svg';
-
-    sliderThumbs.forEach(() => {
-        const circle = document.createElementNS(svgNS, 'circle');
-        circle.setAttribute('fill', '#FFFFFF');
-        liquidGroup.appendChild(circle);
-        liquidCircles.push(circle);
-    });
+function clamp(value, min, max) {
+    return Math.min(Math.max(value, min), max);
 }
 
-/* I.II / 3.3.3.1 обновление liquid формы */
-function updateLiquidBlobs() {
-    if (!sliderSection || !liquidSvg || !liquidCircles.length) return;
+class Ball {
+    constructor(x, y, r) {
+        this.x = x;
+        this.y = y;
+        this.r = r;
 
-    const sectionRect = sliderSection.getBoundingClientRect();
-    liquidSvg.setAttribute('viewBox', `0 0 ${sectionRect.width} ${sectionRect.height}`);
+        this.tx = x;
+        this.ty = y;
+        this.tr = r;
+    }
 
-    sliderThumbs.forEach((thumb, index) => {
+    snap() {
+        this.x = this.tx;
+        this.y = this.ty;
+        this.r = this.tr;
+    }
+
+    update(ease = 0.18) {
+        this.x += (this.tx - this.x) * ease;
+        this.y += (this.ty - this.y) * ease;
+        this.r += (this.tr - this.r) * ease;
+    }
+}
+
+const metaballs = {
+    canvas: liquidCanvas,
+    ctx: liquidCanvas ? liquidCanvas.getContext('2d') : null,
+    dpr: 1,
+    balls: [],
+    started: false,
+
+    resize() {
+        if (!this.canvas || !this.ctx || !sliderSection) return;
+
+        const rect = sliderSection.getBoundingClientRect();
+        this.dpr = Math.max(window.devicePixelRatio || 1, 1);
+
+        const width = Math.max(1, Math.round(rect.width * this.dpr));
+        const height = Math.max(1, Math.round(rect.height * this.dpr));
+
+        if (this.canvas.width !== width || this.canvas.height !== height) {
+        this.canvas.width = width;
+        this.canvas.height = height;
+        }
+    },
+
+    syncTargetsFromDOM(forceSnap = false) {
+        if (!sliderSection) return;
+
+        const sectionRect = sliderSection.getBoundingClientRect();
+
+        sliderThumbs.forEach((thumb, index) => {
         const halo = thumb.querySelector('.white-halo');
-        if (!halo || !liquidCircles[index]) return;
+        if (!halo) return;
 
         const haloRect = halo.getBoundingClientRect();
-
         const cx = haloRect.left - sectionRect.left + haloRect.width / 2;
         const cy = haloRect.top - sectionRect.top + haloRect.height / 2;
-        const radius = haloRect.width / 2;
+        const radius = haloRect.width * 0.4;
 
-        liquidCircles[index].setAttribute('cx', cx.toFixed(2));
-        liquidCircles[index].setAttribute('cy', cy.toFixed(2));
-        liquidCircles[index].setAttribute('r', (radius * 0.8).toFixed(2));
+        if (!this.balls[index]) {
+            this.balls[index] = new Ball(cx, cy, radius);
+        }
+
+        const ball = this.balls[index];
+        ball.tx = cx;
+        ball.ty = cy;
+        ball.tr = radius;
+
+        if (forceSnap) {
+            ball.snap();
+        }
+        });
+    },
+
+    
+    drawCircle(ball) {
+        this.ctx.beginPath();
+        this.ctx.arc(ball.x, ball.y, ball.r, 0, Math.PI * 2);
+        this.ctx.fill();
+    },
+
+    drawBridge(a, b) {
+        if (!a || !b) return;
+
+        const dx = b.x - a.x;
+        const dy = b.y - a.y;
+        const dist = Math.hypot(dx, dy);
+
+        // 1. диапазон соединений 
+        if (dist > (a.r + b.r) * 5.5) return;
+
+        const angle = Math.atan2(dy, dx);
+        
+        // 2. расширение основания по мере удаления
+        const spread = Math.PI / (2.5 + (dist / 250)); 
+        
+        const ax1 = a.x + Math.cos(angle - spread) * a.r;
+        const ay1 = a.y + Math.sin(angle - spread) * a.r;
+        const ax2 = a.x + Math.cos(angle + spread) * a.r;
+        const ay2 = a.y + Math.sin(angle + spread) * a.r;
+
+        const bx1 = b.x + Math.cos(angle + Math.PI + spread) * b.r;
+        const by1 = b.y + Math.sin(angle + Math.PI + spread) * b.r;
+        const bx2 = b.x + Math.cos(angle + Math.PI - spread) * b.r;
+        const by2 = b.y + Math.sin(angle + Math.PI - spread) * b.r;
+
+        const midX = (a.x + b.x) / 2;
+        const midY = (a.y + b.y) / 2;
+
+        this.ctx.fillStyle = '#FFFFFF';
+        this.ctx.beginPath();
+        this.ctx.moveTo(ax1, ay1);
+        
+        // 3. мега осиная талия
+        const waistPinch = dist / 1.5; 
+        
+        this.ctx.quadraticCurveTo(midX, midY, bx1, by1);
+        this.ctx.lineTo(bx2, by2);
+        this.ctx.quadraticCurveTo(midX, midY, ax2, ay2);
+        
+        this.ctx.closePath();
+        this.ctx.fill();
+    },
+
+    render() {
+        if (!this.canvas || !this.ctx) return;
+
+        requestAnimationFrame(() => this.render());
+
+        this.syncTargetsFromDOM();
+
+        this.ctx.setTransform(1, 0, 0, 1, 0, 0);
+        this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+        this.ctx.setTransform(this.dpr, 0, 0, this.dpr, 0, 0);
+
+        // запаздывание за синей точечкой
+        this.balls.forEach(ball => ball.update(0.26));
+
+        // белая абстракция
+        this.ctx.fillStyle = '#FFFFFF';
+        this.balls.forEach(ball => this.drawCircle(ball));
+        
+        // тоненькие соединения
+        this.drawBridge(this.balls[0], this.balls[1]);
+        this.drawBridge(this.balls[1], this.balls[2]);
+    },
+
+    start() {
+        if (this.started || !this.canvas || !this.ctx || !sliderThumbs.length) return;
+
+        this.started = true;
+        this.resize();
+        this.syncTargetsFromDOM(true);
+        this.render();
+    }
+};
+
+if (sliderSection && liquidCanvas && sliderThumbs.length) {
+    metaballs.start();
+
+    window.addEventListener('resize', () => {
+        metaballs.resize();
+        metaballs.syncTargetsFromDOM(true);
     });
 }
-
 
 /* I.II / 3.3.0 механика слайдера */
 sliders.forEach((slider) => {
     const thumb = slider.querySelector('.slider-thumb');
+    if (!thumb) return;
+
     let isDragging = false;
     let activePointerId = null;
 
     function updateSliderPosition(clientX) {
         const rect = slider.getBoundingClientRect();
         const rectWidth = rect.width;
-        
         const thumbHalfWidthPx = thumb.offsetWidth / 2;
 
         const minX = thumbHalfWidthPx;
         const maxX = rectWidth - thumbHalfWidthPx;
+        const x = clamp(clientX - rect.left, minX, maxX);
 
-        let x = clientX - rect.left;
-
-        if (x < minX) x = minX;
-        if (x > maxX) x = maxX;
-
-        let percent = (x / rectWidth) * 100;
-        thumb.style.left = percent + '%';
-
-        if (thumb.classList.contains('is-animating')) {
-            const startTime = performance.now();
-            const duration = 400; 
-
-            function animateLiquid() {
-                updateLiquidBlobs();
-                if (performance.now() - startTime < duration) {
-                    requestAnimationFrame(animateLiquid);
-                }
-            }
-            requestAnimationFrame(animateLiquid);
-        } else {
-            updateLiquidBlobs();
-        }
+        const percent = (x / rectWidth) * 100;
+        thumb.style.left = `${percent}%`;
     }
 
-    // драг
     thumb.addEventListener('pointerdown', (e) => {
         isDragging = true;
         activePointerId = e.pointerId;
-        thumb.classList.remove('is-animating'); 
+        thumb.classList.remove('is-animating');
         thumb.setPointerCapture(e.pointerId);
-        e.stopPropagation(); 
+        e.stopPropagation();
     });
 
-    // клик по линии
     slider.addEventListener('pointerdown', (e) => {
         if (isDragging) return;
-        
+
         isDragging = true;
         activePointerId = e.pointerId;
-        
-        thumb.classList.add('is-animating'); 
+        thumb.classList.add('is-animating');
         updateSliderPosition(e.clientX);
-        
+
         setTimeout(() => {
-            thumb.classList.remove('is-animating');
+        thumb.classList.remove('is-animating');
         }, 400);
     });
 
     window.addEventListener('pointermove', (e) => {
-        if (!isDragging || (activePointerId !== null && e.pointerId !== activePointerId)) return;
-        
-        thumb.classList.remove('is-animating'); 
+        if (!isDragging || (activePointerId !== null && e.pointerId !== activePointerId)) {
+        return;
+        }
+
+        thumb.classList.remove('is-animating');
         updateSliderPosition(e.clientX);
     });
 
@@ -222,16 +339,6 @@ sliders.forEach((slider) => {
     window.addEventListener('pointerup', stopDrag);
     window.addEventListener('pointercancel', stopDrag);
 });
-
-function initLiquid() {
-    updateLiquidBlobs();
-    requestAnimationFrame(updateLiquidBlobs);
-}
-// запуск белых бро
-document.addEventListener('DOMContentLoaded', initLiquid);
-window.addEventListener('load', initLiquid);
-window.addEventListener('resize', updateLiquidBlobs);
-setTimeout(initLiquid, 100);
 
 
 
