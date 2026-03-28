@@ -12,7 +12,7 @@ body {
 
 
 
-/* I. СЕКЦИЯ : СТРУКТУРА */
+/* I. СЕКЦИЯ : СИНЯЯ */
 .section-1 {
     width: 100%;
     display: flex;
@@ -20,32 +20,45 @@ body {
 }
 
 
-
 /* I.I подсекция : выбор планеты */
 .subsection-1-1 { width: 100%; }
 
 
 
-/* 0. лого */
-.logo-container img {
+/* I.I / 0. лого контейнер */
+#kosmolab-logo-desktop {
+    position: relative;
     width: 100%;
-    height: auto;
+    height: 20vw;
+    overflow: hidden;
+    flex-shrink: 0;
+}
+
+/* I.I / 0.1 картинка внутри десктопного лого */
+#kosmolab-logo-desktop img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    object-position: top left;
     display: block;
 }
 
 
 
-/* 1. область под лого космолаб */
+
+
+/* I.I / 1. область под лого космолаб */
 .workspace-wrapper {
     position: relative;
     width: 100vw;
     height: 60vw;
-    margin-top: 4vw;
     display: flex;
     justify-content: center;
 }
 
-/* 1.1 крулая обводка планет */
+/* I.I / 1.1 крулая обводка планет */
 .circle-layer {
     position: absolute;
     width: 55vw;
@@ -59,7 +72,7 @@ body {
 }
 
 
-/* 1.2 планеты */
+/* I.I / 1.2 планеты */
 .planet-layer {
     position: absolute;
     width: 55vw;
@@ -82,7 +95,7 @@ body {
 
 
 
-/* — правый сайдбар */
+/* I.I / правый сайдбар */
 .sidebar-left {
     position: absolute;
     left: 2vw;
@@ -93,7 +106,7 @@ body {
     gap: 1.5vw; 
 }
 
-/* 2. сообщения */
+/* I.I / 2. сообщения */
 .message-box {
     background-color: #4891FF;
     border-radius: 1.5vw; 
@@ -106,7 +119,7 @@ body {
     gap: 1vw;
 }
 
-/* 2.1 основной текст соо */
+/* I.I / 2.1 основной текст соо */
 .message-text {
     font-family: 'Roboto Mono', monospace;
     font-size: 1vw;
@@ -118,13 +131,13 @@ body {
     -moz-osx-font-smoothing: grayscale;
 }
 
-/* 2.2 перегородка */
+/* I.I / 2.2 перегородка */
 .divider {
     width: 50%;
     height: 0.09vw;
 }
 
-/* 2.3 футер текст соо */
+/* I.I / 2.3 футер текст соо */
 .message-footer {
     display: flex;
     justify-content: space-between;
@@ -137,7 +150,7 @@ body {
     -moz-osx-font-smoothing: grayscale;
 }
 
-/* 2.4 цвет элементов */
+/* I.I / 2.4 цвет элементов */
 .variant-black { color: #000000; }
 .variant-black .divider { background-color: #000000; }
 
@@ -147,7 +160,7 @@ body {
 
 
 
-/* 3. перегородка между соо и кнопками */
+/* I.I / 3. перегородка между соо и кнопками */
 .sidebar-divider {
     width: 21vw;
     height: 0.09vw;
@@ -157,7 +170,7 @@ body {
 
 
 
-/* 4. кнопочки */
+/* I.I / 4. кнопочки */
 .planet-switcher {
     display: flex;
     flex-direction: column;
@@ -178,7 +191,7 @@ body {
     text-transform: uppercase;
     
     cursor: pointer;
-    transition: all 0.2s ease;
+    transition: background-color 0.2s ease, color 0.2s ease, box-shadow 0.2s ease;
     color: #76ADFF; 
 
     /* стиль шрифта для mac/ios */
@@ -186,7 +199,7 @@ body {
     -moz-osx-font-smoothing: grayscale;
 }
 
-/* 4.0 состояние : активная (вжатая) */
+/* I.I / 4.0 состояние : активная (вжатая) */
 .planet-btn.active {
     background-color: #8FC2FF;
     color: #FFFFFF;
@@ -195,7 +208,7 @@ body {
         inset -0.15vw -0.15vw 0.3vw #A9D4F9;
 }
 
-/* 4.0 состояние : неактивная (выпуклая) */
+/* I.I / 4.0 состояние : неактивная (выпуклая) */
 .planet-btn {
     background-color: #4891FF;
     box-shadow: 
@@ -203,14 +216,14 @@ body {
          0.15vw  0.15vw 0.4vw #116BE7;
 }
 
-/* 4.0 ховер для текста неактивной кнопочки */
+/* I.I / 4.0 ховер для текста неактивной кнопочки */
 .planet-btn:not(.active):hover {
-    color: #FFFFFFCC; 
+    color: #FFFFFFCC;
 }
 
 
 
-/* — правый сайдбар */
+/* I.I / правый сайдбар */
 .sidebar-right {
     position: absolute;
     right: 2vw;
@@ -221,7 +234,7 @@ body {
     gap: 2vw;
 }
 
-/* 6. навигация */
+/* I.I / 6. навигация */
 .nav-box {
     border: 0.09vw solid #87BBFF;
     border-radius: 1.5vw;
@@ -246,20 +259,20 @@ body {
     -webkit-font-smoothing: antialiased;
 }
 
-/* 6.0 цвета текстов */
+/* I.I / 6.0 цвета текстов */
 .title-black { color: #000000; }
 .active-white { color: #FFFFFF; }
 .inactive-blue { color: #87BBFF; }
 .selected-display { color: #FFFFFF; }
 
-/* 6.0 перегородки */
+/* I.I / 6.0 перегородки */
 .nav-divider {
     width: 90%;
     height: 0.09vw;
     background-color: #87BBFF;
 }
 
-/* 6.1 превьюшка планеты */
+/* I.I / 6.1 превьюшка планеты */
 .nav-planet-preview {
     position: relative;
     width: 9vw;
@@ -279,7 +292,7 @@ body {
 
 
 
-/* 7. граф */
+/* I.I / 7. граф */
 .graph-container {
     width: 13vw;
     height: 30vw; 
@@ -303,43 +316,55 @@ body {
 
 
 
-/* I.II подсекция : настройка планеты */
+/* I.II / 0. слайдер */
 .subsection-1-2 {
     width: 100vw;
     display: flex;
     justify-content: center;
     position: relative;
     z-index: 10;
+    overflow: visible;
+    padding: 1.5vw 0 2vw;
 }
 
-/* 1. стиль слайдера */
+/* I.II / 0.1 свг liquid слой */
+.slider-liquid-svg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+    pointer-events: none;
+    overflow: visible;
+}
+
+/* I.II / 1. обертка слайдеров */
 .sliders-wrapper {
     width: 95vw;
     display: flex;
     flex-direction: column;
     gap: 2.2vw;
+    position: relative;
+    z-index: 3;
 }
 
-
-
-/* 2. заголовки */
+/* I.II / 2. заголовки */
 .slider-label {
     font-family: 'Roboto Mono', monospace;
     font-size: 1.6vw;
     color: #FFFFFF;
     text-transform: uppercase;
     width: 12vw;
-    
-    /* стиль шрифта для mac/ios */
+
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }
 
-/* 2.1 маленькие подписи */
+/* I.II / 2.1 маленькие подписи */
 .slider-texts {
     position: absolute;
     width: 100%;
-    top: -0.3vw; 
+    top: -0.3vw;
     display: flex;
     justify-content: space-between;
     pointer-events: none;
@@ -348,25 +373,24 @@ body {
     font-size: 0.9vw;
     color: #2661B2;
 
-    /* стиль шрифта для mac/ios */
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }
 
-
-
-/* 3. строки с ползунками */
+/* I.II / 3. строки с ползунками */
 .slider-row {
     display: flex;
     align-items: center;
     gap: 4vw;
+    position: relative;
 }
+
 .slider-control {
     flex-grow: 1;
     position: relative;
 }
 
-/* 3.1 контейнер строки */
+/* I.II / 3.1. контейнер строки */
 .slider-track-container {
     position: relative;
     width: 100%;
@@ -375,7 +399,7 @@ body {
     align-items: center;
 }
 
-/* 3.2 черная линия */
+/* I.II / 3.2. черная линия */
 .slider-line {
     position: absolute;
     width: 100%;
@@ -384,45 +408,422 @@ body {
     z-index: 1;
 }
 
-
-/* 3.3 ползунок */
+/* I.II / 3.3 — ползунок */
 .slider-thumb {
     position: absolute;
     top: 50%;
-    transform: translate(-50%, -50%); 
+    transform: translate(-50%, -50%);
     display: flex;
     align-items: center;
     justify-content: space-between;
-    width: 20vw; 
-    z-index: 2;
+    width: 20vw;
+    z-index: 4;
     cursor: pointer;
-
-    transition: left 0.25s ease-out;
+    
+    transition: left 0s ease-out; 
+}
+.slider-thumb.is-animating {
+    transition: left 0.4s ease-out;
 }
 
-/* 3.3.1 cиний позунок */
+/* I.II / 3.3.1. синяя точка */
 .blue-dot {
     width: 2.5vw;
     height: 2.5vw;
     background-color: #368AFF;
     border-radius: 50%;
+    position: relative;
+    z-index: 2;
 }
 
-/* 3.3.2 черные точки */
+/* I.II / 3.3.2. черные точки */
 .black-dot {
     width: 1vw;
     height: 1vw;
     background-color: #000000;
     border-radius: 50%;
+    position: relative;
+    z-index: 2;
 }
 
-/* 3.3.3 белый круг */
+/* I.II / 3.3.3. белый кружок */
 .white-halo {
     width: 7vw;
     height: 7vw;
-    background-color: #FFFFFF;
+    background-color: transparent;
     border-radius: 50%;
     display: flex;
     justify-content: center;
     align-items: center;
+    position: relative;
+    z-index: 1;
+}
+
+
+
+
+
+
+
+
+
+
+/* II. СЕКЦИЯ : ВНЕШНИЕ ПАРАМЕТРЫ */
+.section-2 {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding: 7vw 0 6vw;
+    background-color: #368AFF;
+}
+
+
+
+
+/* II.I подсекция : цвет */
+.subsection-2-1 {
+    width: 95vw;
+    min-height: 42vw;
+    background-color: #FFF1DD;
+    border-radius: 2vw;
+    padding: 3.5vw 3.2vw 3vw;
+    position: relative;
+}
+
+
+
+/* II.I / 0. рамка & заголовок */
+.outer-params-frame {
+    position: relative;
+    width: 100%;
+}
+
+/* II.I / 0.1 заголовок */
+.orange-section-title {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 3;
+
+    margin: 0;
+    padding: 0 2.2vw;
+    background-color: #FFF1DD;
+    color: #FF6D2A;
+
+    font-family: 'Roboto Mono', monospace;
+    font-weight: 400;
+    font-size: 1.6vw;
+    line-height: 1;
+    text-transform: uppercase;
+
+    /* стиль шрифта для mac/ios */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* II.I / 0.2 контейнер рамки */
+.param-frame-container {
+    position: relative;
+    width: 100%;
+    min-height: 37vw;
+
+    padding: 0 0 0 4.5vw;
+}
+
+/* II.I / 0.2.1 svg рамка */
+.frame-svg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    
+    object-fit: fill;
+    display: block;
+    pointer-events: none;
+    z-index: 1;
+}
+
+/* II.I / 0.2.2 лэйаут внутри рамки */
+.color-layout {
+    --color-gap: 4vw;
+
+    width: 100%;
+    display: flex;
+    align-items: flex-start;
+    gap: var(--color-gap);
+}
+
+
+
+/* II.I / 1. левый сайдбар */
+.color-sidebar {
+    width: max-content;
+    padding-top: 4vw;
+    padding-left: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    flex-shrink: 0;
+}
+
+/* II.I / 1.0 название цвета + hex */
+.color-sidebar-head {
+    display: flex;
+    flex-direction: column;
+    gap: 2vw;
+    margin-bottom: 8vw;
+}
+.color-hex,
+.color-name {
+    margin: 0;
+    font-family: 'Roboto Mono', monospace;
+    font-weight: 400;
+    font-size: 1.6vw;
+    line-height: 1;
+    text-transform: uppercase;
+
+    /* стиль шрифта для mac/ios */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+.color-hex { color: #000000; }
+.color-name { color: #FF6D2A; }
+
+
+
+/* II.I / 2. цвета rgb */
+.rgb-stack {
+    display: flex;
+    flex-direction: column;
+    gap: 1.8vw;
+}
+.rgb-box {
+    width: 7vw;
+    min-height: 4vw;
+    padding: 1.35vw 1.8vw;
+    background-color: #FFE6C9;
+    border-radius: 1.5vw;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1.2vw;
+}
+
+.rgb-letter,
+.rgb-value {
+    font-family: 'Roboto Mono', monospace;
+    font-size: 1vw;
+    line-height: 1.3;
+    text-transform: uppercase;
+    color: #000000;
+
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+
+
+/* II.I / 3. контейнер перегородки и слайдера */
+.color-picker-container {
+    display: flex;
+    align-items: center;
+    gap: var(--color-gap);
+    padding-top: 3.8vw;
+}
+
+/* II.I / 3.1. перегородка */
+.color-v-divider {
+    width: 0.09vw;
+    height: 29vw;
+    background-color: #FF6D2A;
+    flex-shrink: 0;
+}
+
+/* II.I / 3.2. контейнер слайдера */
+.color-slider-track {
+    position: relative;
+    width: 8vw;
+    height: 29vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    flex-shrink: 0;
+}
+
+/* II.I / 3.2.1. цветные плашки */
+.color-pill {
+    width: 4vw;
+    height: 13vw;
+    border-radius: 4vw;
+    flex-shrink: 0;
+}
+.pill-blue { background-color: #368AFF; }
+.pill-orange { background-color: #FF6D2A; }
+
+
+
+/* II.I / 3.2.2. линия + точки */
+.color-slider-line-wrapper {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+}
+
+/* II.I / 3.2.3. линия */
+.color-slider-line {
+    position: absolute;
+    left: 50%;
+    top: 2vw;
+    bottom: 2vw;
+    width: 0.09vw;
+    background-color: #000000;
+    transform: translateX(-50%);
+}
+
+/* II.I / 3.2.4. контейнер точек */
+.color-slider-thumb-group {
+    position: absolute;
+    inset: 0;
+}
+
+/* II.I / 3.2.5. смол крайние точки */
+.small-edge-dot {
+    position: absolute;
+    left: 50%;
+    width: 1vw;
+    height: 1vw;
+    background-color: #000000;
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 3;
+}
+.small-edge-dot.top { top: 2vw; }
+.small-edge-dot.bottom { top: calc(100% - 2vw); }
+
+/* II.I / 3.2.6. биг бегунок */
+.main-color-thumb {
+    position: absolute;
+    left: 50%;
+    top: calc(100% - 2vw);
+    width: 2.4vw;
+    height: 2.4vw;
+    background-color: #000000;
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 4;
+    cursor: grab;
+    touch-action: none;
+}
+.main-color-thumb.is-dragging { cursor: grabbing; }
+.main-color-thumb:focus-visible {
+    outline: 0.14vw solid #000000;
+    outline-offset: 0.25vw;
+}
+
+/* перемещение слайдера */
+.main-color-thumb { transition: top 0s ease-out; }
+.main-color-thumb.is-animating { transition: top 0.4s ease-out; }
+
+
+
+
+/* II.I / 4. биг цветной кружочек */
+.color-preview-center {
+    position: absolute; 
+    
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+
+    width: 30vw; 
+    height: 30vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* II.I / 4.1. обертка свг */
+.planet-guide-wrapper {
+    position: absolute;
+    width: 28vw;
+    height: 28vw;
+    z-index: 2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.planet-guide-svg {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+/* II.I / 4.2. биг кружок */
+.main-planet-sphere {
+    width: 23vw;
+    height: 23vw;
+    background-color: #FF6D2A; 
+    border-radius: 50%;
+    position: relative;
+    z-index: 1;
+}
+
+
+
+
+/* II.I / 5. правый сайдбар */
+.color-info-sidebar {
+    width: 21vw;
+    margin-left: 32vw;
+    padding-top: 3.8vw;
+    display: flex;
+    flex-direction: column;
+    gap: 2vw;
+}
+
+/* II.I / 5.1 соо инструкция */
+.message-box.color-msg {
+    background-color: #FFE6C9;
+    width: 100%;
+    border-radius: 1.5vw;
+    padding: 1.5vw;
+}
+.color-msg .message-text { color: #000000; }
+.color-divider { background-color: #FF6D2A; }
+.color-msg .message-footer { color: #000000; }
+.color-msg .footer-label { color: #FF6D2A;  }
+
+/* II.I / 5.1 блок hsb */
+.hsb-status-row {
+    background-color: #FFE6C9;
+    border-radius: 1.5vw;
+    padding: 1.5vw 1.5vw;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.hsb-item {
+    font-family: 'Roboto Mono', monospace;
+    font-size: 1vw;
+    color: #FF6D2A;
+    text-transform: uppercase;
+
+    /* стиль шрифта для mac/ios */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+
+/* II.I / плавная анимашка смена цвета */
+.main-planet-sphere, 
+.color-name, 
+.js-dynamic-divider, 
+.js-dynamic-label, 
+.hsb-item,
+.color-v-divider {
+    transition: background-color 0.4s ease, color 0.4s ease;
 }
