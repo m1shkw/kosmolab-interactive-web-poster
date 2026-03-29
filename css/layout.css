@@ -9,6 +9,12 @@ body {
     overflow-x: hidden;
 }
 
+html { scroll-behavior: smooth; }
+.nav-item {
+    text-decoration: none;
+    display: block;
+}
+
 
 
 

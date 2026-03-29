@@ -17,15 +17,15 @@
     <section class="section-1">
 
         <!-- I.I выбор планеты -->
-        <div class="subsection-1-1">
+        <div class="subsection-1-1" id="structure">
 
-        <!-- 0 тайтл космолаб (десктоп) -->
-        <div id="kosmolab-logo-desktop" class="logo-container"></div>
+            <!-- 0 тайтл космолаб (десктоп) -->
+            <div id="kosmolab-logo-desktop" class="logo-container"></div>
 
-        <!-- 0 тайтл космолаб (мобилка) -->
-        <div id="kosmolab-logo-mobile" class="logo-container">
-            <img src="images/0.4-kosmolab.svg" class="logo-mobile-img" alt="0.4-kosmolab">
-        </div>
+            <!-- 0 тайтл космолаб (мобилка) -->
+            <div id="kosmolab-logo-mobile" class="logo-container">
+                <img src="images/0.4-kosmolab.svg" class="logo-mobile-img" alt="0.4-kosmolab">
+            </div>
 
             <!-- 1 обводка кружочки -->
             <div class="workspace-wrapper">
@@ -79,34 +79,32 @@
             <!-- правый сайдбар -->
             <div class="sidebar-right">
 
-                <!-- 6 навигация -->
-                <div class="nav-box">
-                    <div class="nav-content">
-                        <p class="nav-item title-black">СБОРКА ПЛАНЕТЫ</p>
-                        
-                        <div class="nav-divider"></div>
-                        
-                        <p class="nav-item active-white">СТРУКТУРА</p>
-                        <p class="nav-item inactive-blue">ЦВЕТ</p>
-                        <p class="nav-item inactive-blue">НАБОР</p>
-                        
-                        <div class="nav-divider"></div>
-                        
-                        <div class="nav-planet-preview">
-                            <img src="images/2.1-planet-orbital.png" id="nav-img-orbital" class="nav-preview-img active">
-                            <img src="images/2.2-planet-relief.png" id="nav-img-relief" class="nav-preview-img">
-                            <img src="images/2.3-planet-selenic.png" id="nav-img-selenic" class="nav-preview-img">
-                        </div>
-
+            <!-- 6 навигация -->
+            <div class="nav-box">
+                <div class="nav-content">
+                    <p class="nav-item title-black">СБОРКА ПЛАНЕТЫ</p>
+                    
+                    <div class="nav-divider"></div>
+                    
+                    <a href="#structure" class="nav-item active-white">СТРУКТУРА</a>
+                    <a href="#color" class="nav-item inactive-blue">ЦВЕТ</a>
+                    <a href="#kit" class="nav-item inactive-blue">НАБОР</a>
+                    
+                    <div class="nav-divider"></div>
+                    
+                    <div class="nav-planet-preview">
+                        <img src="images/2.1-planet-orbital.png" id="nav-img-orbital" class="nav-preview-img active">
+                        <img src="images/2.2-planet-relief.png" id="nav-img-relief" class="nav-preview-img">
+                        <img src="images/2.3-planet-selenic.png" id="nav-img-selenic" class="nav-preview-img">
                     </div>
                 </div>
+            </div>
 
-                <!-- граф -->
-                <div class="graph-container">
-                    <video autoplay loop muted playsinline aria-hidden="true" class="graph-video" >
-                        <source src="videos/4-graph-animation.mp4" type="video/mp4">
-                    </video>
-                </div>
+            <!-- граф -->
+            <div class="graph-container">
+                <video autoplay loop muted playsinline aria-hidden="true" class="graph-video" >
+                    <source src="videos/4-graph-animation.mp4" type="video/mp4">
+                </video>
             </div>
             
         </div>
@@ -201,7 +199,7 @@
         <div class="section-2-content">
 
             <!-- II.I цвет -->
-            <div class="subsection-2-1">
+            <div class="subsection-2-1" id="color">
 
                 <div class="outer-params-frame">
 
@@ -296,7 +294,7 @@
             </div>
 
             <!-- II.II набор -->
-            <div class="subsection-2-2">
+            <div class="subsection-2-2" id="kit">
                 
                 <!-- 0. сообщение -->
                 <div class="message-box kit-msg">

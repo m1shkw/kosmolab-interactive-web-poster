@@ -101,6 +101,39 @@ planetButtons.forEach(button => {
 
 
 
+// I.I / 6. навигация
+const navLinks = document.querySelectorAll('.nav-box .nav-item[href]');
+let navResetTimer;
+
+navLinks.forEach(link => {
+    link.addEventListener('click', function() {
+        clearTimeout(navResetTimer);
+
+        navLinks.forEach(l => {
+            l.classList.remove('active-white');
+            l.classList.add('inactive-blue');
+        });
+        
+        this.classList.add('active-white');
+        this.classList.remove('inactive-blue');
+
+        navResetTimer = setTimeout(() => {
+            navLinks.forEach(l => {
+                if (l.getAttribute('href') === '#structure') {
+                    l.classList.add('active-white');
+                    l.classList.remove('inactive-blue');
+                } else {
+                    l.classList.remove('active-white');
+                    l.classList.add('inactive-blue');
+                }
+            });
+        }, 500); 
+    });
+});
+
+
+
+
 
 // I.II подсекция : настройка деталей
 const sliderSection = document.querySelector('.subsection-1-2');
