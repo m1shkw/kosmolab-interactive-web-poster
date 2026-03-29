@@ -478,7 +478,17 @@ body {
     display: flex;
     justify-content: center;
     padding: 7vw 0 6vw;
-    background-color: #368AFF;
+    background-color: #368AFF; 
+}
+
+.section-2-content {
+    width: 95vw;
+    background-color: #FFF1DD;
+    border-radius: 2vw;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 3vw;
 }
 
 
@@ -486,11 +496,9 @@ body {
 
 /* II.I подсекция : цвет */
 .subsection-2-1 {
-    width: 95vw;
+    width: 100%;
     min-height: 42vw;
-    background-color: #FFF1DD;
-    border-radius: 2vw;
-    padding: 3.5vw 3.2vw 3vw;
+    padding: 3.5vw 3.5vw 0;
     position: relative;
 }
 
@@ -830,4 +838,367 @@ body {
 .hsb-item,
 .color-v-divider {
     transition: background-color 0.4s ease, color 0.4s ease;
+}
+
+
+
+
+/* II.II / подсекция : набор */
+.subsection-2-2 {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    z-index: 10;
+}
+
+
+
+/* II.II /  0. соо */
+.message-box.kit-msg {
+    background-color: #FFE6C9;
+    width: 24.3vw; 
+    border-radius: 1.5vw;
+    padding: 1.5vw;
+    
+    margin-top: -11vw; 
+
+    align-self: flex-end;
+    margin-right: 3.5vw;
+}
+.kit-msg .message-text { color: #000000; }
+.kit-msg .footer-label { color: #FF6D2A; }
+.section-2 {
+    flex-direction: column;
+    align-items: center;
+    min-height: auto; 
+    height: auto;
+}
+
+
+
+/* II.II / 2.1 контейнер кнопочек */
+.kit-grid {
+    display: flex;
+    flex-direction: row; 
+    justify-content: center; 
+   
+    gap: 1.5vw;
+    width: 100%;
+    padding: 0 3.5vw; 
+    margin-top: 4vw;
+
+    box-sizing: border-box; 
+}
+.kit-btn {
+    width: 21vw; 
+    padding: 2vw 0; 
+    border: none;
+    border-radius: 1.5vw;
+
+    font-family: 'Roboto Mono', monospace;
+    font-weight: 400; 
+    font-size: 1.6vw;
+    text-transform: uppercase;
+    
+    cursor: pointer;
+    
+    transition: background-color 0.2s ease, color 0.2s ease, box-shadow 0.2s ease;
+    color: #FF6D2A; 
+
+    /* стиль шрифта для mac/ios */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* II.II / 2.2 cостояние: выпуклая */
+.kit-btn {
+    background-color: #FFE6C9;
+    box-shadow: 
+        -0.2vw -0.2vw 0.3vw #FFF7EB, 
+         0.15vw  0.15vw 0.4vw #FFC79F;
+}
+
+/* II.II / 2.3 состояние: вжатая */
+.kit-btn.active {
+    background-color: #FFF3E0;
+    box-shadow: 
+        inset  0.15vw  0.15vw 0.3vw #FFD0A4, 
+        inset -0.15vw -0.15vw 0.3vw #FFFFFF;
+    color: #FFC59E; 
+}
+
+/* II.II / 2.4 ховер текста */
+.kit-btn:not(.active):hover {
+    color: #FFC59E;
+}
+
+
+
+/* II.II / 3. контейнер планетки + набора */
+.kit-workspace {
+    display: flex;
+    width: 100%;
+    padding: 2vw 3.5vw;
+    box-sizing: border-box;
+}
+
+/* II.II / 3.1 контейнер набора */
+.kit-box-container {
+    position: relative;
+    width: 46vw;
+    margin-left: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.kit-box-svg {
+    width: 100%;
+    height: auto;
+}
+
+
+/* II.II / 3.2 контейнер предметов */
+.kit-items-overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    pointer-events: none;
+}
+.kit-item {
+    position: absolute;
+
+    width: 100%;
+    height: auto;
+    left: 0;
+    top: 0;
+
+    opacity: 0; 
+    pointer-events: none;
+    transition: opacity 0.1s ease, transform 0.1s ease;
+}
+.kit-item.is-visible { opacity: 1; }
+
+.js-kit-tools {
+    z-index: 5;
+    width: 16vw;
+    top: 15%;
+    left: 12%;
+}
+.js-kit-manual {
+    z-index: 3;
+    width: 15vw;
+    top: 13.5%;
+    left: 53.5%;
+}
+.js-kit-core {
+    z-index: 4;
+    width: 14.6vw;
+    top: 54%;
+    left: 13.5%;
+}
+.js-kit-tubes {
+    z-index: 6;
+    width: 16vw;
+    top: 53.3%;
+    left: 52.5%;
+}
+
+
+/* II.II / 3.3 контейнер планеты */
+.kit-planet-container {
+    position: relative;
+    display: flex;
+
+    width: 40vw;
+    height: 40vw;
+    margin-top: 4vw;
+
+    justify-content: center;
+    align-items: center;
+}
+
+/* II.II / 3.3.1 боксик */
+.kit-planet-frame-svg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    pointer-events: none;
+    z-index: 2;
+}
+
+/* II.II / 3.3 планетка */
+.kit-planet-result-img {
+    width: 35vw;
+    height: auto;
+    z-index: 1;
+}
+
+
+
+/* II.II / 4. кнопка отправки */
+.kit-final-action {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    padding: 0 3.5vw; 
+    margin-top: 1.5vw;
+    padding-bottom: 2vw;
+    box-sizing: border-box;
+}
+.js-send-planet { width: 100%; background-color: #FFF1DD; }
+
+/* /* II.II / 4.1 состояние : вжатая */
+.js-send-planet.active {
+    background-color: #FFEDD7;
+    box-shadow: 
+        inset  0.15vw  0.15vw 0.3vw #ffd7b2, 
+        inset -0.15vw -0.15vw 0.3vw #FFFFFF;
+    color: #FFC59E;
+}
+
+
+
+
+
+/* II.II / 5.оверлэй затемнение */
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.4);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+.overlay.is-visible {
+    display: flex;
+    animation: fadeInBg 0.4s ease forwards;
+}
+
+
+/* II.II / 5.1 поп-ап */
+.popup-container {
+    position: relative;
+    opacity: 0;
+}
+.overlay.is-visible .popup-container {
+    animation: slideUp 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    animation-delay: 0.1s;
+}
+.overlay.is-closing .popup-container {
+    animation: fadeDown 0.3s ease forwards;
+}
+
+/* II.II / 5.2 соо внутри поп-апа */
+.popup-msg {
+    position: relative;
+    background-color: #FFF1DD !important; 
+    width: auto !important;
+    padding: 4vw !important;
+    border-radius: 2.5vw;
+    box-sizing: border-box;
+}
+
+/* II.II / 5.3 внутр рамка */
+.inner-border {
+    position: absolute;
+    top: 1.6vw;
+    left: 1.6vw;
+    right: 1.6vw;
+    bottom: 1.6vw;
+    border: 0.14vw solid #FF6D2A;
+    border-radius: 1.6vw;
+    pointer-events: none;
+}
+
+/* II.II / 5.4 крестик */
+.popup-close {
+    position: absolute;
+    top: -1.2vw;
+    right: -1.2vw;
+    width: 3.2vw;
+    height: 3.2vw;
+    background-color: #FF6D2A;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 10;
+    padding: 0;
+}
+.close-icon {
+    font-size: 2.5vw;
+    color: #FFFFFF;
+    line-height: 1;
+    font-family: 'Roboto Mono', monospace;
+
+    margin-top: -0.4vw;
+    
+    /* стиль шрифта для mac/ios */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* II.II / 5.5 текст + перегородка */
+.popup-msg .message-text { 
+    color: #000000; 
+    font-size: 1.6vw;
+    margin: 0;
+}
+.popup-msg .color-divider { 
+    background-color: #FF6D2A; 
+    width: 40%; 
+    height: 0.14vw; 
+    margin: 0.8vw 0;
+}
+
+/* II.II / 5.6 футер */
+.popup-msg .message-footer {
+    font-size: 1.6vw;
+    color: #FF6D2A;
+}
+.popup-msg .footer-label, 
+.popup-msg .footer-number { 
+    color: #FF6D2A; 
+}
+
+/* II.II / 5.7 анимашки поп-апа */
+@keyframes fadeInBg {
+    from { background-color: rgba(0, 0, 0, 0); }
+    to { background-color: rgba(0, 0, 0, 0.4); }
+}
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px) scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+
+@keyframes fadeOutBg {
+    from { background-color: rgba(0, 0, 0, 0.4); }
+    to { background-color: rgba(0, 0, 0, 0); }
+}
+@keyframes fadeDown {
+    from {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+    to {
+        opacity: 0;
+        transform: translateY(20px) scale(0.95);
+    }
 }

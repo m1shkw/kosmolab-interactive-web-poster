@@ -91,6 +91,10 @@ planetButtons.forEach(button => {
                 navImg.classList.remove('active');
             }
         });
+
+        // 4.3 переключение цветной файнал планетки
+        currentPlanetType = button.dataset.planet;
+        updateKitPlanetImage(); 
     });
 });
 
@@ -207,7 +211,7 @@ const metaballs = {
         const angle = Math.atan2(dy, dx);
         
         // 2. расширение основания по мере удаления
-        const spread = Math.PI / (2.5 + (dist / 250)); 
+        const spread = Math.PI / (3 + (dist / 500)); 
         
         const ax1 = a.x + Math.cos(angle - spread) * a.r;
         const ay1 = a.y + Math.sin(angle - spread) * a.r;
@@ -421,6 +425,10 @@ if (colorSliderTrack && colorThumb) {
         document.querySelector('.js-hsb-h').textContent = data.hsb.h;
         document.querySelector('.js-hsb-s').textContent = data.hsb.s;
         document.querySelector('.js-hsb-b').textContent = data.hsb.b;
+
+        // 3. смена файнал цвет планетки
+        currentPlanetColor = mode;
+        updateKitPlanetImage();
     }
 
 
@@ -465,3 +473,120 @@ if (colorSliderTrack && colorThumb) {
         snapToEdge(e.clientY); 
     });
 }
+
+
+
+// II.II / 2. кнопочки набор
+document.addEventListener('DOMContentLoaded', () => {
+    const kitButtons = document.querySelectorAll('.kit-btn');
+    
+    // селектор картинки
+    const kitMap = {
+        'tools': '.js-kit-tools',
+        'core': '.js-kit-core',
+        'manual': '.js-kit-manual',
+        'tubes': '.js-kit-tubes'
+    };
+
+    kitButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            const kitKey = button.getAttribute('data-kit');
+            const targetImageSelector = kitMap[kitKey];
+            const targetImage = document.querySelector(targetImageSelector);
+
+            if (targetImage) {
+                button.classList.toggle('active');
+                targetImage.classList.toggle('is-visible');
+            }
+        });
+    });
+});
+
+
+
+
+// II.II / 3.1 анимашка бокса планеты
+const planetFrameImg = document.getElementById('kit-planet-frame');
+const planetFrameFiles = [
+    'images/9.1-planet-box.svg',
+    'images/9.2-planet-box.svg',
+    'images/9.3-planet-box.svg'
+];
+let planetFrameIndex = 0;
+
+function animatePlanetFrame() {
+    if (!planetFrameImg) return;
+    planetFrameIndex = (planetFrameIndex + 1) % planetFrameFiles.length;
+    planetFrameImg.src = planetFrameFiles[planetFrameIndex];
+}
+
+setInterval(animatePlanetFrame, 250);
+
+// II.II / 3.2 файнал цвет планетка
+let currentPlanetType = 'orbital';
+let currentPlanetColor = 'orange';
+
+const kitPlanetResultImg = document.getElementById('kit-planet-result');
+
+function updateKitPlanetImage() {
+    if (!kitPlanetResultImg) return;
+    
+    kitPlanetResultImg.style.opacity = '0';
+    
+    setTimeout(() => {
+        let prefix = '';
+        if (currentPlanetType === 'orbital') prefix = '10.1';
+        if (currentPlanetType === 'relief') prefix = '10.2';
+        if (currentPlanetType === 'selenic') prefix = '10.3';
+
+        const newSrc = `images/${prefix}-planet-${currentPlanetType}-${currentPlanetColor}.png`;
+        kitPlanetResultImg.src = newSrc;
+        
+        kitPlanetResultImg.style.opacity = '1';
+    }, 150);
+}
+
+
+
+
+// II.II / 4. кнопка отправки : клик
+const sendBtn = document.querySelector('.js-send-planet');
+const popup = document.getElementById('planet-popup');
+const closePopup = document.getElementById('close-popup');
+
+if (sendBtn && popup) {
+    sendBtn.addEventListener('click', () => {
+        sendBtn.classList.add('active');
+
+        setTimeout(() => {
+            sendBtn.classList.remove('active');
+            // 5. поп-ап
+            popup.classList.add('is-visible');
+            // блокируем скролла страницы 
+            document.body.style.overflow = 'hidden';
+        }, 200);
+    });
+}
+
+// 5.1 закрытие поп-апа
+function closePlanetPopup() {
+    if (!popup.classList.contains('is-visible')) return;
+    
+    popup.classList.add('is-closing');
+
+    setTimeout(() => {
+        popup.classList.remove('is-visible');
+        popup.classList.remove('is-closing');
+        document.body.style.overflow = '';
+    }, 200); 
+}
+// 5.2 закрытие по крестику
+if (closePopup) {
+    closePopup.addEventListener('click', closePlanetPopup);
+}
+// 5.3 акрытие по фону
+popup.addEventListener('click', (e) => {
+    if (e.target === popup) {
+        closePlanetPopup();
+    }
+});
