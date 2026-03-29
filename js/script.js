@@ -1,5 +1,16 @@
-// I.I подсекция : выбор планеты
+// сброс скролла при перезагрузке
+if (window.location.hash) {
+    window.scrollTo(0, 0);
+    
+    setTimeout(() => {
+        window.scrollTo(0, 0);
+        history.replaceState('', document.title, window.location.pathname + window.location.search);
+    }, 1);
+}
 
+
+
+// I.I подсекция : выбор планеты
 
 // 0. лого
 const logoContainer = document.getElementById('kosmolab-logo-desktop')
