@@ -1,12 +1,24 @@
-// сброс скролла при перезагрузке
-if (window.location.hash) {
+// сброс скролла по якорю
+const hasVisited = sessionStorage.getItem('wasVisited');
+
+if (!hasVisited) {
+    if ('scrollRestoration' in history) {
+        history.scrollRestoration = 'manual';
+    }
     window.scrollTo(0, 0);
     
-    setTimeout(() => {
-        window.scrollTo(0, 0);
-        history.replaceState('', document.title, window.location.pathname + window.location.search);
-    }, 1);
+    sessionStorage.setItem('wasVisited', 'true');
+} else {
+    if ('scrollRestoration' in history) {
+        history.scrollRestoration = 'auto';
+    }
 }
+
+document.addEventListener('DOMContentLoaded', () => {
+    if (window.location.hash) {
+        history.replaceState('', document.title, window.location.pathname + window.location.search);
+    }
+});
 
 
 
