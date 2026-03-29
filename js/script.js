@@ -316,6 +316,8 @@ if (sliderSection && liquidCanvas && sliderThumbs.length) {
     });
 }
 
+
+
 /* I.II / 3.3.0 механика слайдера */
 sliders.forEach((slider) => {
     const thumb = slider.querySelector('.slider-thumb');

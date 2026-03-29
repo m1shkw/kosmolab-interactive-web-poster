@@ -5,18 +5,27 @@
     display: none;
 }
 
-/* I.I подсекция : выбор планеты */
+
+
+
+/* I секция : выбор планеты */
 @media (max-width: 600px) {
 
-    .subsection-1-1 {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
+    /* I. / грид с центровкой */
+    .section-1 {
+        display: grid;
+        grid-template-columns: 100%;
+        justify-items: center;
     }
+    .message-box, .planet-switcher, .subsection-1-2 .sliders-wrapper { justify-self: center; }
+    .subsection-1-1 { display: contents; }
 
-    /* 0. лого */
+
+
+    /*  I.I / 0. лого */
     #kosmolab-logo-desktop { display: none; }
-    #kosmolab-logo-mobile {
+    #kosmolab-logo-mobile { 
+        order: 1; 
         display: flex;
         justify-content: center;
         width: 100%;
@@ -29,18 +38,11 @@
 
 
 
-    /* сайдбары */
-    .sidebar-right { display: none; }
-    .sidebar-left { display: contents; } 
-    .sidebar-divider { display: none; }
-
-
-
-    /* 1. cообщения */
+    /*  I.I / 1. cоо */
+    .message-box.variant-black { order: 2; margin-top: 6vw; }
+    .message-box.variant-white { order: 3; margin-top: 4vw; } 
     .message-box {
-        order: 2;
         width: 90%;
-        margin-top: 5vw; 
         padding: 5vw;
         border-radius: 4vw;
     }
@@ -49,26 +51,32 @@
         flex-direction: column;
         gap: 3vw;
     }
-    .message-text { font-size: clamp(14px, 4vw, 17px); line-height: 1.35; }
+    .message-text { font-size: 3.5vw; line-height: 1.35; }
     .divider { width: 50%; height: 1px; }
-    .message-footer { font-size: clamp(14px, 4vw, 17px); }
+    .message-footer { font-size: 3.5vw; }
+
+
+    /*  I.I / 1.1 сайдбары */
+    .sidebar-right { display: none; }
+    .sidebar-left { display: contents; } 
+    .sidebar-divider { display: none; }
 
 
 
-    /* 2. планеты & обводка */
+    /* I.I / 2. планета & обводка */
     .workspace-wrapper {
-        order: 3; 
+        order: 4; 
         position: relative;
         width: 100vw;
         height: 100vw; 
-        margin-top: 5vw;
+        margin-top: 2vw;
         display: flex;
         justify-content: center;
         align-items: center;
         overflow: visible;
     }
 
-    /* 2.1 круглая обводка */
+    /*  I.I / 2.1 круглая обводка */
     .circle-layer {
         position: absolute;
         width: 85vw; 
@@ -79,7 +87,7 @@
     }
     .circle-layer img { width: 100%; height: auto; }
 
-    /* 2.2 планеты */
+    /*  I.I / 2.2 планетки */
     .planet-layer {
         position: absolute;
         width: 85vw;
@@ -93,22 +101,22 @@
 
     
 
-    /* 3. кнопочки */
+    /*  I.I / 3. кнопочки */
     .planet-switcher {
-        order: 4;
+        order: 5;
         width: 90%; 
-        margin-top: 5vw;
-        margin-bottom: 10vw;
+        margin-top: 3vw;
+        margin-bottom: 15vw;
         display: flex;
         flex-direction: column;
-        gap: 5vw;
+        gap: 4vw;
         align-items: stretch;
     }
     .planet-btn {
         width: 100%;
         padding: 4.5vw 4vw;
-        border-radius: 5vw;
-        font-size: clamp(15px, 4.5vw, 20px);
+        border-radius: 3vw;
+        font-size: 4.5vw;
         box-shadow:
             -2px -2px 4px #4BAAFF,
             2px 2px 5px #116BE7;
@@ -118,4 +126,507 @@
             inset 2px 2px 4px #6092CE,
             inset -2px -2px 4px #A9D4F9;
     }
+
+
+    
+
+    /* I.II слайдеры */
+    .subsection-1-2 { 
+        order: 6; /* Теперь слайдеры гарантированно после кнопок */
+        position: relative;
+        z-index: 10;
+        margin-top: -3vw;
+        margin-bottom: 3vw;
+    }
+
+    .subsection-1-2 .slider-label { display: none; }
+    .subsection-1-2 .black-dot { display: none; }
+
+    .subsection-1-2 .slider-track-container { height: 11vw; }
+
+    .subsection-1-2 .sliders-wrapper {
+        width: 92vw;
+        gap: 4vw;
+    }
+
+    .subsection-1-2 .slider-texts {
+        font-size: 3vw;
+        top: -1vw;
+    }
+
+    .subsection-1-2 .slider-thumb {
+        justify-content: center;
+        width: fit-content;
+    }
+
+    .subsection-1-2 .white-halo {
+        width: 17vw; 
+        height: 17w;
+    }
+
+    .subsection-1-2 .blue-dot {
+        width: 5.8vw;
+        height:5.8vw;
+    }
+}
+
+
+
+
+
+/* II.I подсекция : цвет */
+@media (max-width: 600px) {
+
+    .section-2-content {
+        border-radius: 5vw;
+        width: 95%;
+        height: auto;
+        margin: 0 auto;
+    }
+
+    .subsection-2-1 {
+        width: 100%;
+        padding: 8vw 0 5vw;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+
+
+    /* II.I / 1.1 заголовок */
+    .orange-section-title {
+        background: none !important;
+        background-color: transparent !important;
+        
+        padding: 0; 
+        border: none;
+        
+        font-size: 4.5vw;
+        text-align: center;
+        width: 100%;
+        margin-top: 1.5vw;
+
+        color: #FF6D2A;
+    }
+
+    /* II.I / 1.2 рамка  */
+    .outer-params-frame {
+        width: 88vw;
+        margin-top: -4.2vw;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    .param-frame-container {
+        width: 100%;
+        min-height: 88vw;
+        padding: 4vw 2vw 5vw;
+        margin: 0 auto;
+        box-sizing: border-box;
+    }
+
+
+
+    /* II.I / 2. соо */
+    .message-box.color-msg {
+        grid-area: instr;
+        width: 94%;
+        max-width: none;
+        margin: 3vw auto 4vw auto;
+        padding: 5vw;
+        border-radius: 4vw;
+        box-sizing: border-box;
+    }
+
+    .color-msg .message-content {
+        display: flex;
+        flex-direction: column;
+        gap: 3vw;
+    }
+
+    .color-msg .message-text {
+        font-size: 3.5vw;
+        line-height: 1.35;
+    }
+
+    .color-msg .message-footer {
+        font-size: 3.5vw;
+        line-height: 1.2;
+    }
+
+    .color-msg .divider {
+        width: 50%;
+        height: 1px;
+    }
+
+
+
+    /* II.I / 3. грид элементов */
+    .color-layout {
+        display: grid;
+        grid-template-areas:
+            "instr instr instr"
+            "slider planet rgb";
+        grid-template-columns: 22vw 42vw 22vw; 
+        align-items: center;
+        justify-content: center; 
+        gap: 0; 
+        width: 100%;
+        box-sizing: border-box;
+        --color-gap: 0;
+    }
+
+    .color-info-sidebar {
+        grid-area: instr;
+        width: 100%;
+        padding: 0;
+        margin: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .color-picker-container {
+        grid-area: slider;
+        padding-top: 0;
+        align-self: center;
+        justify-self: center;
+    }
+
+    .color-v-divider { display: none; }
+
+
+
+
+    /* II.I / 3.1 слайдер */
+    .color-slider-track {
+        width: 10vw;
+        height: 38vw;
+        margin-left: -3vw;
+    }
+
+    .color-pill {
+        width: 9vw;
+        height: 17.5vw;
+        border-radius: 10vw; 
+    }
+
+    .color-slider-line {
+        width: 0.2vw;
+        background-color: #000000;
+        top: 2vw; 
+        bottom: 2vw; 
+    }
+
+    .small-edge-dot {
+        width: 1.8vw;
+        height: 1.8vw;
+    }
+
+    .small-edge-dot.top {
+        top: 3vw; 
+    }
+
+    .small-edge-dot.bottom {
+        top: calc(100% - 3vw); 
+    }
+
+    .main-color-thumb {
+        width: 4.2vw;
+        height: 4.2vw;
+        top: calc(100% - 4vw); 
+    }
+
+    .hsb-status-row {
+        display: none;
+    }
+
+
+
+    /* II.I / 3.2 цвет кружочек */
+    .color-preview-center {
+        grid-area: planet;
+        position: relative;
+        left: -1vw;
+        top: auto;
+        transform: none;
+        width: 40vw; 
+        height: 40vw;
+        justify-self: center;
+        align-self: center;
+    }
+
+    .planet-guide-wrapper {
+        width: 100%;
+        height: 100%;
+    }
+
+    .main-planet-sphere {
+        width: 32vw;
+        height: 32vw;
+    }
+
+
+
+    /* II.I / правый сайдбар */
+    .color-sidebar {
+        grid-area: rgb;
+        padding-top: 1vw;
+        margin-right: 3.2vw;
+        align-items: flex-end;
+        text-align: right;
+        justify-self: end;
+    }
+
+    .color-sidebar-head {
+        margin-bottom: 6vw;
+        align-items: flex-end;
+    }
+
+    .color-hex { display: none; }
+    
+    .color-name { font-size: 3.5vw; }
+
+    .rgb-stack {
+        gap: 2.5vw;
+        align-items: flex-end;
+    }
+
+    .rgb-box {
+        width: auto;
+        width: 15vw; 
+        height: 8vw;
+        padding: 2vw 2.5vw;
+        border-radius: 2.5vw;
+    }
+
+    .rgb-letter,
+    .rgb-value {
+        font-family: 'Roboto Mono', monospace;
+        font-size: 3.5vw;
+        line-height: 1.35;
+    }
+}
+
+
+
+
+
+/* II.II подсекция : набор */
+@media (max-width: 600px) {
+
+    .subsection-2-2 {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+        padding-bottom: 2.5vw;
+    }
+
+
+
+    /* II.II / 1. соо */
+    .message-box.kit-msg {
+        width: 92%;
+        max-width: none;
+        margin: -1vw auto auto auto;
+        padding: 5vw;
+        border-radius: 4vw;
+        box-sizing: border-box;
+        align-self: center;
+    }
+
+    .kit-msg .message-content {
+        display: flex;
+        flex-direction: column;
+        gap: 3vw;
+    }
+
+    .kit-msg .message-text {
+        font-size: 3.5vw;
+        line-height: 1.35;
+        text-align: left;
+    }
+
+    .kit-msg .divider {
+        width: 50%;
+        height: 1px;
+        background-color: #FF6D2A;
+    }
+
+    .kit-msg .message-footer {
+        font-size: 3.5vw;
+    }
+
+
+
+    /* II.II / 2. кнопочки в 2 ряда */
+    .kit-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 3vw;
+        width: 90%;
+        padding: 0;
+        margin-top: 4vw;
+        order: 2;
+    }
+
+    .kit-btn:nth-child(1) { order: 1; }
+    .kit-btn:nth-child(3) { order: 2; }
+    .kit-btn:nth-child(2) { order: 3; }
+    .kit-btn:nth-child(4) { order: 4; }
+
+    .kit-btn {
+        width: 100%; 
+        padding: 4.5vw 2vw;
+        border-radius: 3vw;
+        font-size: 3.5vw;
+        box-shadow: 
+            -0.5vw -0.5vw 1vw #FFF7EB, 
+             0.4vw  0.4vw 1.2vw #FFC79F;
+    }
+
+    .kit-btn.active {
+        box-shadow: 
+            inset  0.4vw  0.4vw 1vw #FFD0A4, 
+            inset -0.4vw -0.4vw 1vw #FFFFFF;
+    }
+
+
+
+    /* II.II / 3. наборчик */
+    .kit-workspace {
+        flex-direction: column;
+        padding: 8vw 4vw;
+        order: 3;
+    }
+
+    .kit-box-container {
+        width: 112%;
+        margin-left: -6%;
+        margin-top: -6vw;
+    }
+
+    .js-kit-tools   { width: 35%; top: 15%; left: 12%; }
+    .js-kit-manual  { width: 33%; top: 13.5%; left: 53.5%; }
+    .js-kit-core    { width: 32%; top: 54%; left: 13.5%; }
+    .js-kit-tubes   { width: 35%; top: 53.3%; left: 52.5%; }
+
+
+
+    /* II.II / 4. планета в боксе */
+    .kit-planet-container {
+        width: 90vw;
+        height: 90vw;
+        margin-left: -1vw;
+        order: 4;
+    }
+    .kit-planet-result-img { width: 70vw; }
+
+
+
+    /* II.II / 5. кнопочка отправить */
+    .kit-final-action {
+        width: 90%;
+        margin-top: -1vw;
+        padding: 0;
+        order: 5;
+    }
+
+    .js-send-planet {
+        width: 100%;
+        padding: 5vw;
+        border-radius: 4vw;
+        font-size: 4.5vw;
+        background-color: #FFE6C9;
+        color: #FF6D2A;
+        box-shadow: 
+            -0.5vw -0.5vw 1vw #FFF7EB, 
+             0.4vw  0.4vw 1.2vw #FFC79F;
+    }
+
+
+
+
+    /* II.II / 6. поп-апчик */
+    .popup-msg {
+        width: 80vw !important;
+        padding: 8vw !important;
+        border-radius: 4vw;
+        background-color: #FFF1DD !important;
+        position: relative;
+    }
+    
+    .inner-border {
+        top: 3vw;
+        left: 3vw;
+        right: 3vw;
+        bottom: 3vw;
+        border: 0.3vw solid #FF6D2A;
+        border-radius: 3vw;
+    }
+
+    .popup-msg .message-text {
+        font-size: 3.5vw !important;
+        line-height: 1.35;
+    }
+
+    .popup-msg .color-divider {
+        width: 50% !important;
+        height: 0.3vw !important;
+        background-color: #FF6D2A !important;
+    }
+    
+    .popup-msg .message-footer {
+        font-size: 3.5vw !important;
+        color: #FF6D2A;
+        font-weight: 400;
+    }
+    
+    .popup-close {
+        width: 10vw;
+        height: 10vw;
+        top: -4vw;
+        right: -4vw;
+    }
+    
+    .close-icon {
+        font-size: 8vw;
+        margin-top: -1vw;
+    }
+}
+
+
+
+
+
+/* III секция : футер */
+@media (max-width: 600px) {
+    .site-footer {
+        width: 95%;
+        margin-top: -2vw;
+        margin-bottom: 4vw;
+        padding: 3vw;
+        border-radius: 4vw;
+    }
+
+    .site-footer .footer-inner {
+        border: 0.4vw solid #FFFFFF;
+        border-radius: 3vw;
+        padding: 4vw;
+        gap: 0;
+    }
+
+    .footer-row:not(.row-large) { display: none; }
+
+    .row-large {
+        display: flex;
+        justify-content: space-between;
+        font-size: 4.5vw !important;
+        width: 100%;
+        margin: 0;
+    }
+
+    .row-large span { display: inline-block; }
 }
