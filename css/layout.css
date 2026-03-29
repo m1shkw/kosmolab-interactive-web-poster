@@ -1202,3 +1202,78 @@ body {
         transform: translateY(20px) scale(0.95);
     }
 }
+
+
+
+
+
+/* III. СЕКЦИЯ : ФУТЕР */
+.site-footer {
+    background-color: #FF6D2A; 
+    width: 95vw; 
+    margin: auto auto 3vw auto; 
+    margin-top: -3vw;
+    
+    border-radius: 2.5vw;
+    padding: 1.6vw; 
+    box-sizing: border-box;
+    
+    display: block; 
+}
+.footer-row {
+    display: flex;
+    align-items: baseline;
+    color: #FFFFFF;
+    width: 100%;
+}
+
+/* III. / 1. белая рамка */
+.footer-inner {
+    border: 0.1vw solid #FFFFFF;
+    border-radius: 1.6vw;
+    padding: 2vw 2vw;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5vw;
+}
+
+/* III. / 2.1 левый текст */
+.text-mono {
+    font-family: 'Roboto Mono', monospace;
+    font-size: 1vw;
+    letter-spacing: 0.05em;
+
+    /* стиль шрифта для mac/ios */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+.uppercase { text-transform: uppercase; }
+
+/* III. / 2.2 много много точечек */
+.dots {
+    flex-grow: 1;
+    border-bottom: 0.15vw dotted #FFFFFF;
+    margin: 0 1vw;
+}
+
+/* III. / 2.3 правый текст */
+.text-helvetica {
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: 1vw;
+
+    /* стиль шрифта для mac/ios */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* III. / 2.4 биг текст 3-я строка */
+.row-large {
+    justify-content: space-between;
+    font-family: 'Roboto Mono', monospace;
+    font-size: 1.6vw;
+    text-transform: uppercase;
+
+    /* стиль шрифта для mac/ios */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
